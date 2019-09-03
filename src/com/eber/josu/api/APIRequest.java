@@ -58,6 +58,10 @@ public abstract class APIRequest<T, R> {
 		return parameters != null && parameters.containsKey(parameter);
 	}
 	
+	protected final void removeParameter(String parameter) {
+		parameters.remove(parameter);
+	}
+	
 	protected Response execute(Connection connection) {
 		try {
 			return connection.execute();

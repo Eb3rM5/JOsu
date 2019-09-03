@@ -50,18 +50,25 @@ public class BeatmapsRequest extends ArrayAPIRequest<Collection<Mapset>>{
 	}
 	
 	public BeatmapsRequest mapset(int id) {
-		setParameter(SET_PARAMETER, "" + id);
+		if (id <= 0) removeParameter(SET_PARAMETER);
+		else setParameter(SET_PARAMETER, "" + id);
 		return this;
 	}
 	
 	public BeatmapsRequest map(int id) {
-		setParameter(MAP_PARAMETER, "" + id);
+		if (id <= 0) removeParameter(MAP_PARAMETER);
+		else setParameter(MAP_PARAMETER, "" + id);
 		return this;
 	}
 	
 	public BeatmapsRequest user(int id) {
-		setParameter(USER_PARAMETER, "" + id);
-		setParameter(TYPE_PARAMETER, TYPE_ID);
+		if (id <= 0) {
+			removeParameter(USER_PARAMETER);
+			removeParameter(TYPE_PARAMETER);
+		} else {			
+			setParameter(USER_PARAMETER, "" + id);
+			setParameter(TYPE_PARAMETER, TYPE_ID);
+		}
 		return this;
 	}
 	
