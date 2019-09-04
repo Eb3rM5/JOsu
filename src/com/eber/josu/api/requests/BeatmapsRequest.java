@@ -1,9 +1,7 @@
 package com.eber.josu.api.requests;
 
 import java.time.DateTimeException;
-import java.time.Instant;
-import java.time.format.DateTimeParseException;
-import java.time.temporal.TemporalAccessor;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -143,7 +141,7 @@ public class BeatmapsRequest extends ArrayAPIRequest<Collection<Mapset>>{
 
 		private Map<String, Object> map;
 		
-		private Date submitDate, lastUpdate, approvedDate;
+		private LocalDateTime submitDate, lastUpdate, approvedDate;
 		
 		private APIBeatmap(JSONObject object) {
 			this.map = object.getCollection();
@@ -261,15 +259,15 @@ public class BeatmapsRequest extends ArrayAPIRequest<Collection<Mapset>>{
 			return getDouble("bpm");
 		}
 
-		public Date getSubmitDate() {
+		public LocalDateTime getSubmitDate() {
 			return submitDate == null ? submitDate = getDate("submit_date") : submitDate;
 		}
 		
-		public Date getApprovedDate() {
+		public LocalDateTime getApprovedDate() {
 			return approvedDate == null ? approvedDate = getDate("approved_date") : approvedDate;
 		}
 		
-		public Date getLastUpdate() {
+		public LocalDateTime getLastUpdate() {
 			return lastUpdate == null ? lastUpdate = getDate("last_update") : lastUpdate;
 		}
 		
@@ -349,20 +347,10 @@ public class BeatmapsRequest extends ArrayAPIRequest<Collection<Mapset>>{
 			return str == null ? -1 : Double.parseDouble(str);
 		}
 		
-		private Date getDate(String key) {
+		private LocalDateTime getDate(String key) {
 			String str = getStr(key);
 			
-			if (str != null) {
-				TemporalAccessor accessor;
-				
-				try {
-					accessor = OsuAPI.DATE_FORMATTER.parse(str);
-				} catch (DateTimeParseException e) {
-					return null;
-				}
-				
-				if (accessor != null) return Date.from(Instant.from(accessor));
-			}
+			if (str != null) return LocalDateTime.parse(str, OsuAPI.DATE_FORMATTER);
 			
 			return null;
 		}
