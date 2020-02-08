@@ -139,6 +139,11 @@ public class BeatmapsRequest extends ArrayAPIRequest<Collection<Mapset>>{
 	
 	public static final class APIBeatmap extends Beatmap {
 
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -9055348050856396735L;
+
 		private Map<String, Object> map;
 		
 		private LocalDateTime submitDate, lastUpdate, approvedDate;
@@ -277,7 +282,7 @@ public class BeatmapsRequest extends ArrayAPIRequest<Collection<Mapset>>{
 		}
 		
 		public int getFavoriteCount() {
-			return getInt("favorite_count");
+			return getInt("favourite_count");
 		}
 		
 		public int getPlayCount() {
