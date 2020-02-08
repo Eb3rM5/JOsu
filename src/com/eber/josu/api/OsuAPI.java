@@ -26,11 +26,10 @@ public final class OsuAPI {
 	}
 	
 	public <T, R> T request(APIRequest<T, R> request) {
-
+		
 		Connection connection = request.build(apiKey);
 		if (connection != null) {			
 			Response response = request.execute(connection);
-			
 			if (response != null && response.statusCode() == 200) {
 				R body = request.handleResponse(response);
 				if (body != null) return request.result(body);

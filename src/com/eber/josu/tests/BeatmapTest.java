@@ -13,13 +13,11 @@ public class BeatmapTest {
 	public static String KEY;
 	
 	static {
-		
 		try {
 			KEY = Util.readFrom(BeatmapTest.class.getResourceAsStream("key.txt")).get(0);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public static void main(String[] args) {
