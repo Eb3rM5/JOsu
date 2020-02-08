@@ -1,12 +1,18 @@
 package com.eber.josu.beatmap;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import com.eber.josu.enums.BeatmapMode;
 import com.eber.josu.enums.BeatmapStatus;
 
-public abstract class Beatmap {
+public abstract class Beatmap implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4370184761485698842L;
+
 	Mapset mapset;
 	
 	private Integer hashCode;

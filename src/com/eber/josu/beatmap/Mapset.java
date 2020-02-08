@@ -1,11 +1,16 @@
 package com.eber.josu.beatmap;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Mapset {
+public class Mapset implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 253276374779391247L;
 	private List<Beatmap> beatmaps;
 	
 	public Mapset(Beatmap firstBeatmap) {
