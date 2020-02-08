@@ -44,7 +44,6 @@ public abstract class APIRequest<T, R> {
 			}
 			
 		}
-		System.out.println(url);
 		return Jsoup.connect(url).ignoreContentType(true).userAgent(api.getUserAgent());
 		
 	}
